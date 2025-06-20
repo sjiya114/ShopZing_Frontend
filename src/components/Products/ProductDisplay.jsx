@@ -2,9 +2,13 @@ import React, { useContext } from 'react'
 import { StoreContext } from '../../context/Context'
 import favimage from '../../assets/favourite.png'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const ProductDisplay = ({panel,id,textcolor,price,bgcolor,image,name}) => {
-  const {addToCart,addToFavourites}=useContext(StoreContext);
+  const {addToCart,addToFavourites,fetchProductList}=useContext(StoreContext);
+  useEffect(()=>{
+   fetchProductList();
+  },[])
   return (
     <>
     <div className={`max-w-sm border-2 border-[${panel}] rounded-lg shadow bg-[${bgcolor}]`}>

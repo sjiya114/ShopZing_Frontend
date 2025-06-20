@@ -25,22 +25,14 @@ function Login() {
      console.log("hello");
      console.log(data);
      try {
-      const res=await axios.post("http://localhost:5000/user/login",data);
+      const res=await axios.post("/user/login",data);
       console.log("done");
          if(res.data.success){
           let token=res.data.token;
           localStorage.setItem("token",token);
-          localStorage.setItem("username",res.data.user);
-          setUsername({
-            name:res.data.user.name,
-            password:res.data.user.password,
-            email:res.data.user.email,
-            cart:res.data.user.cart,
-            favourites:res.data.user.favourites,
-            orders:res.data.user.orders,
-            Profile:res.data.user.Profile,
-            contact:(Number)(res.data.user.contact),
-           });
+          localStorage.setItem("user",res.data.user);
+          setUsername(res.data.user);
+          console.log(res.data.user);
           //  console.log(res.data.user);
                       setUser({
                        email:"",

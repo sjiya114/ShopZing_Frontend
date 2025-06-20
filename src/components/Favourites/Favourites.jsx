@@ -4,8 +4,13 @@ import Footer from '../Footer.jsx'
 import ProductDisplay from '../Products/ProductDisplay'
 import { useContext } from 'react'
 import { StoreContext } from '../../context/Context.jsx'
+import { useEffect } from 'react'
 function Favourites() {
-    const {fav}=useContext(StoreContext);
+    const {fav,fetchFavData}=useContext(StoreContext);
+    useEffect(()=>
+    {
+     fetchFavData();
+    },[])
   return (
     <>
      <Navbar/>

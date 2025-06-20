@@ -6,7 +6,7 @@ import { StoreContext } from '../context/Context';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 function Navbar() {
-    const {token,setToken}=useContext(StoreContext);
+    const {token,setToken,setUsername}=useContext(StoreContext);
     const [toggle,setToggle]=useState(false);
   const handleToggle=()=>
     {
@@ -25,8 +25,10 @@ function Navbar() {
     const nav=useNavigate();
     const logout=()=>
     {
-        setToken('');
-        localStorage.removeItem("token");
+        localStorage.clear("token");
+        localStorage.clear("username");
+        setUsername("");
+        setToken("");
         nav("/");
     }
   return (

@@ -23,7 +23,7 @@ function Signup() {
      let data={
       name:user.name,email:user.email,password:user.password
      };
-    const res=await axios.post("http://localhost:5000/user/signup",data);
+    const res=await axios.post("/user/signup",data);
     // if(res.status===200)
     // {
       
@@ -35,7 +35,7 @@ function Signup() {
                     });
                     let token=res.data.token;
       localStorage.setItem("token",token);
-      setUsername({
+      let xyz={
         name:res.data.user.name,
         password:res.data.user.password,
         email:res.data.user.email,
@@ -44,7 +44,10 @@ function Signup() {
         orders:res.data.user.orders,
         Profile:res.data.user.Profile.toString('base64'),
         contact:(Number)(res.data.user.contact),
-       });
+      }
+      localStorage.getItem("user",xyz);
+      setUsername(xyz);
+      
                     toast.success(res.data.message)
                     nav("/home");
 

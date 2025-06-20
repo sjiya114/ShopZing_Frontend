@@ -2,9 +2,15 @@ import React, { useContext } from 'react'
 import Footer from '../Footer'
 import { StoreContext } from '../../context/Context'
 import Navbar from '../Navbar';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Cart() {
-  const { cart, discount, amount, bill } = useContext(StoreContext);
+  const { cart, discount, amount, bill,fetchCartData,removeFromCart } = useContext(StoreContext);
+  useEffect(()=>
+  {
+   fetchCartData();
+  },[cart]);
   return (
     <>
       <Navbar />
@@ -15,7 +21,7 @@ function Cart() {
           <div className="flex flex-row border-1 border-black" >
             <div className="w-1/2 my-12 px-10">
               {/* <img className="w-full "  src={`data:image/png;base64,${ products.image.toString('base64')}`} alt="image"/>  */}
-              <img className="w-full" src={URL.createObjectURL(new Blob([new Uint8Array(products.image.data)], { type: 'image/png' }))} alt="image" />
+              <img className="w-40 h-40" src={URL.createObjectURL(new Blob([new Uint8Array(products.image.data)], { type: 'image/png' }))} alt="image" />
               {/* 1. products.image.data
 This is assumed to be an array of bytes (e.g., [137, 80, 78, 71, ...]) — the raw binary image data returned from an API.
 
@@ -42,7 +48,7 @@ The src now contains a valid image reference the browser can render. */}
               <h1>Discount:{products.discount}</h1>
               <h1>Platform Fee:20</h1>
               <br />
-              <button className="px-2 py-2 bg-blue-950 hover:bg-blue-700 cursor-pointer text-white rounded-md"><a href="/user/removefromcart/<%= products._id %>">Remove from Cart</a></button>
+              <button className="px-2 py-2 bg-blue-950 hover:bg-blue-700 cursor-pointer text-white rounded-md"><Link onClick={(e)=>{removeFromCart(products._id)}}  >Remove from Cart</Link></button>
             </div>
           </div>
         ))}

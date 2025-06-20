@@ -33,7 +33,7 @@ function Profile() {
     <div>
     
     <div>
-        {username.Profile ? (
+        {username && username.Profile ? (
             <div className="place-items-center py-2">
                 <img  src={URL.createObjectURL(new Blob([new Uint8Array(username.Profile.data)], { type: 'image/png' }))}     className="w-40 h-40 border-2 border-white shadow-xl shadow-blue-950   "  />
                 <br></br>
@@ -56,11 +56,11 @@ function Profile() {
     </div>
     </div>
     <div className='text-shadow-2xs text-shadow-white text-cyan-950 px-4 py-4 font-serif text-2xl'>
-    <p className="text-center font-semibold py-2">Name:{username.name}
+    <p className="text-center font-semibold py-2">Name:{username && username.name}
      </p>
-    <p className="text-center font-semibold py-2">Email:{username.email}
+    <p className="text-center font-semibold py-2">Email:{username && username.email}
     </p>
-    <p className="text-center font-semibold py-2">Contact:{Number(username.contact)}</p>
+    <p className="text-center font-semibold py-2">Contact:{username && Number(username.contact)}</p>
 </div>
 <Footer/>
     </>
